@@ -1,13 +1,17 @@
-
 import './App.css';
+import Example from './components/example/example';
 import TodoList from './components/todo/todo-list';
 
 function App() {
   return (
     <div>
-      <TodoList/>
+      <Example />
+      <TodoList />
+      
     </div>
   );
 }
 
 export default App;
+
+
