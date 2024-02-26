@@ -1,5 +1,6 @@
 import './App.css';
 import Example from './components/example/example';
+import ProdList from './components/products/prod-list';
 import TodoList from './components/todo/todo-list';
 
 function App() {
@@ -7,7 +8,7 @@ function App() {
     <div>
       <Example />
       <TodoList />
-      
+      <ProdList/>
     </div>
   );
 }
