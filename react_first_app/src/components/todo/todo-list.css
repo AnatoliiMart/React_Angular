@@ -17,3 +17,10 @@
 .task-item button{
     margin-left: auto;
 }
+.task-done{
+  text-decoration: line-through;
+}
+.active{
+  background: dodgerblue;
+  color: #fff;
+}
