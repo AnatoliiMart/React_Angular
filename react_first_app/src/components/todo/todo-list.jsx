@@ -3,20 +3,20 @@ import "./todo-list.css";
 import TodoAdd from "./todo-add";
 import TodoFilter from "./todo-filter";
 import TodoItem from "./todo-item";
-import { nanoid } from "nanoid";
 import { TodoReducer } from "./todo-reducer";
 
 const TodoList = () => {
-  const [tasks2, dispatch] = useReducer(TodoReducer, []);
+  const [tasks, dispatch] = useReducer(TodoReducer, []);
 
-  const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState("All");
-  useEffect(() => {
-    setTasks(JSON.parse(localStorage.getItem("tasks")) || []);
 
-    dispatch({
-      type: "create"
-    });
+  useEffect(() => {
+    dispatch(
+      {
+        type: "restore",
+        payload: JSON.parse(localStorage.getItem("tasks") || []),
+      }
+    )
   }, []);
 
   useEffect(() => {
@@ -30,38 +30,31 @@ const TodoList = () => {
   }
 
   const addTask = (title) => {
-    setTasks([
-      ...tasks,
-      {
-        id: nanoid(),
-        title,
-        done: false,
-      },
-    ]);
+    dispatch({
+      type: "create",
+      payload: title,
+    });
   };
 
   const removeTask = (id) => {
-    setTasks(tasks.filter(task => task.id !== id));
+    dispatch({
+      type: "remove",
+      payload: id,
+    });
   };
 
   const toggleDone = (id) => {
-    const newTasks = tasks.map((task) =>{
-      if (task.id === id){
-        return {...task, done: !task.done};
-      }
-      return task;
-    })
-    setTasks(newTasks);
+    dispatch({
+      type: "changeDone",
+      payload: id,
+    });
   }
 
   const updateTask = (id, title) => {
-    const newTasks = tasks.map((task) =>{
-      if (task.id === id){
-        return {...task, title};
-      }
-      return task;
+    dispatch({
+      type: "update",
+      payload: {id, title},
     });
-    setTasks(newTasks);
   }
 
   return (
@@ -73,9 +66,16 @@ const TodoList = () => {
         <TodoFilter setFilter={setFilter} filterMap={filterMap} activeFilter={filter}/>
 
         <div>
-          {tasks.filter(filterMap[filter]).map((task) => (
-            <TodoItem {...task} removeTask={removeTask} toggleDone={toggleDone} updateTask={updateTask} key={task.id} />
-          ))}
+          {
+            tasks.filter(filterMap[filter]).map((task) => (
+              <TodoItem {...task} 
+                removeTask={removeTask} 
+                toggleDone={toggleDone} 
+                updateTask={updateTask} 
+                key={task.id} 
+              />)
+            )
+          }
         </div>
       </div>
     </div>
