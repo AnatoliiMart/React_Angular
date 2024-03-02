@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import classNames from "classnames";
+import DoneIcon from '@mui/icons-material/Done';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
+import CloseIcon from '@mui/icons-material/Close';
+import ReplayIcon from '@mui/icons-material/Replay';
 
 const TodoItem = ({ title, done, id, removeTask, toggleDone, updateTask}) => {
   const [isEdit, setisEdit] = useState(false);
@@ -20,10 +24,22 @@ const TodoItem = ({ title, done, id, removeTask, toggleDone, updateTask}) => {
   const editTemplate = <input onKeyDown={saveTask} value={newTitle} onChange={(e) => setnewTitle(e.target.value)} type="text" />;
   
   return (
-    <div className="task-item">
-      <input type="checkbox" defaultChecked={done} onClick={() => toggleDone(id)} />
-      {isEdit ? editTemplate : normalTemplate}
-      <button onClick={() => removeTask(id)}>delete</button>
+    <div>
+      <div className="task-item">
+        {
+          done ? <DoneAllIcon className="done" onClick={() => toggleDone(id)}/>
+               : <DoneIcon className="not-done" onClick={() => toggleDone(id)}/>
+        }
+        {
+          isEdit ? editTemplate
+                 : normalTemplate
+        }
+        {
+          isEdit ? <ReplayIcon className="on-edit-btn"/>
+                 : <CloseIcon className="close-btn" onClick={() => removeTask(id)}/>
+        }      
+      </div>
+      <hr />
     </div>
   );
 };

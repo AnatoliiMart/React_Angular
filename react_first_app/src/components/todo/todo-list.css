@@ -1,10 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&family=Sono:wght@200..800&display=swap');
+:active, :hover, :focus {
+  outline: 0;
+  outline-offset: 0;
+}
 .container {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: linear-gradient(180deg, rgba(0,118,205,1) 58%, rgba(66,149,209,1) 100%);
+  height: 100vh;
+}
+.todos-container{
+  width: 70%;
+  background: #fff;
+}
+.filter-container{
+  width: 70%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; 
+}
+.filter-container button {
+  margin: 5px;
+  padding: 5px;
+  font-family: "Sono", monospace;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: dodgerblue;
+  border: none;
+}
+.todo-add-container{
+  width:70%;
+  background: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: max-content;
+}
+.error-title{
+  color: red;
+  font-size: 1em;
+  font-weight: bold;
+} 
+.add-icon-active {
+  padding: 10px;
+  color: rgb(7, 120, 233);
+}
+.add-icon-inactive {
+  padding: 10px;
+  color: rgba(121, 180, 240, 0.7);
+}
+.add-circle-active {
+  padding: 10px;
+  color: rgb(7, 120, 233);
+}
+.add-circle-inactive {
+  padding: 10px;
+  color: rgb(255, 255, 255);
+}
+input {
+  width: 88%;
+  padding: 10px 20px;
+  border: none;
+}
+.list-header{
+  font-family: "Kode Mono", monospace;
+  font-weight: normal;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+  font-size: 3.3em;
 }
 
 .todo-list {
-  max-width: 250px;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .task-item {
@@ -12,15 +89,37 @@
   align-items: center;
   gap: 10px;
   margin: 5px 0;
+  padding: 0 10px;
 }
 
-.task-item button{
+.task-item .close-btn{
     margin-left: auto;
+    color: rgb(254, 136, 136);
+}
+.task-item .close-btn:hover{
+  color: red;
+}
+.task-item span{
+  color: dodgerblue;
+  font-weight: 500;
 }
 .task-done{
   text-decoration: line-through;
 }
 .active{
-  background: dodgerblue;
+  background: rgb(183, 231, 253);
   color: #fff;
+}
+.inactive{
+  background: rgb(255, 255, 255);
+  color: #fff;
+}
+.done{
+  color: dodgerblue;
+}
+.not-done{
+  color: rgba(121, 180, 240, 0.7);
+}
+.on-edit-btn{
+  color: rgba(121, 180, 240, 0.7);
 }

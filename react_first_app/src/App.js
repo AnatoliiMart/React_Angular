@@ -1,18 +1,15 @@
 import './App.css';
-import Example from './components/example/example';
-import ProdList from './components/products/prod-list';
-import TodoList from './components/todo/todo-list';
+import Header from './components/Header';
+import ThemeProvider from './providers/themeProvider';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
-    <div>
-      <Example />
-      <TodoList />
-      <ProdList/>
-    </div>
+    <ThemeProvider>
+      <Header/>
+      <Outlet/>
+    </ThemeProvider>
   );
 }
 
 export default App;
-
-

@@ -24,9 +24,9 @@ const TodoList = () => {
   }, [tasks]) 
 
   const filterMap = {
-    All: () => true,
-    Done: (task) => task.done,
     ToDo: (task) => !task.done,
+    Done: (task) => task.done,
+    All: () => true,
   }
 
   const addTask = (title) => {
@@ -59,13 +59,13 @@ const TodoList = () => {
 
   return (
     <div className="container">
-      <h1 style={{ color: "dodgerblue" }}>ToDo List</h1>
+      <h1 className="list-header">ToDo List</h1>
 
       <div className="todo-list">
         <TodoAdd addTask={addTask} />
         <TodoFilter setFilter={setFilter} filterMap={filterMap} activeFilter={filter}/>
 
-        <div>
+        <div className="todos-container">
           {
             tasks.filter(filterMap[filter]).map((task) => (
               <TodoItem {...task} 
