@@ -25,3 +25,20 @@
     border-radius: 15px;
     width: 90%;
 }
+.option-btns{
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.option-btns button{
+  margin: 5px;
+  padding: 5px;
+  font-family: "Sono", monospace;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: dodgerblue;
+  border: none;
+}
