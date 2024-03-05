@@ -1,39 +1,60 @@
-.prod-container{
-    width: 80%;
-    margin: 0 auto;
-    background: rgb(211, 211, 211);
-    border: 1px solid black;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+.prod-container {
+  width: 80%;
+  margin: 0 auto;
+  background: rgb(211, 211, 211);
+  border: 1px solid black;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
-.product{
-    flex-basis: 20%;
-    width: 20%;
-    margin: 10px auto;
-    padding: 10px;
-    border: 2px solid red;
-    border-radius: 15px;
-    height: max-content;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+.product {
+  flex-basis: 20%;
+  width: 20%;
+  margin: 10px auto;
+  padding: 10px;
+  border: 2px solid red;
+  border-radius: 15px;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
-.product img{
-    align-self: center;
-    border-radius: 15px;
-    width: 90%;
+.product-info {
+  z-index: 1;
+  position: relative;
+  top: -50px;
+  left: 15px;
 }
-.option-btns{
-    width: 80%;
-    margin: 0 auto;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+.wishlist-item {
+  position: relative;
+  z-index: 999;
+  left: 75%;
+  background: rgba(248, 242, 220, 0.85);
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
 }
-.option-btns button{
+.in-wishlist {
+  color: rgb(229, 191, 2);
+}
+.not-in-wishlist {
+  color: grey;
+}
+.product img {
+  align-self: center;
+  border-radius: 15px;
+  width: 90%;
+}
+.option-btns {
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.option-btns button {
   margin: 5px;
   padding: 5px;
   font-family: "Sono", monospace;
