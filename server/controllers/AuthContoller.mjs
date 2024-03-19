@@ -39,7 +39,7 @@ const login = async (req, res) => {
 }
 
 const getAuthUser = async (req, res) => {
-	const userId = req.user
+	const { userId } = req.user
 	const user = await User.findById(userId)
 	if (!user) {
 		return res.status(404).json({

@@ -1,17 +1,48 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { setTheme, toggleTheme } from './slices/ThemeSlice'
+// import { setTheme, toggleTheme } from './slices/ThemeSlice'
 import './App.css'
 import { useEffect } from 'react'
-import { Products } from './thunks/productsThunk'
-import { NavLink, Outlet } from 'react-router-dom'
+// import { Products } from './thunks/productsThunk'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { fetchUserData, logout } from './thunks/authThunk'
 
 const App = () => {
+	const auth = useSelector((state) => state.auth)
+
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
+
+	useEffect(() => {
+		dispatch(fetchUserData())
+	}, [])
+
+	const guest = (
+		<>
+			<NavLink to='/login'>Login</NavLink>
+			<NavLink to='/register'>Register</NavLink>
+		</>
+	)
+
+	const authUser = (
+		<>
+			Welcome {auth.userData.name}
+			<button
+				onClick={() => {
+					dispatch(logout())
+					navigate('/login')
+				}}
+			>
+				Logout
+			</button>
+		</>
+	)
 	return (
 		<div>
 			<nav>
 				<NavLink to='/'>Home</NavLink>
-				<NavLink to='/login'>Login</NavLink>
-				<NavLink to='/register'>Register</NavLink>
+				<NavLink to='/optimize'>Optimize</NavLink>
+				<NavLink to='/profile'>Profile</NavLink>
+				{!auth.token ? guest : authUser}
 			</nav>
 			<Outlet />
 		</div>

@@ -1,0 +1,22 @@
+<h1>Users</h1>
+<button (click)="toggleIsAddUserOpen()">Add user</button>
+<div *ngIf="isAddUserOpen">
+  <div>
+    <input
+      type="text"
+      [(ngModel)]="userName"
+      #name="ngModel"
+      required
+      pattern="^[a-zA-Z]{2,15}$"
+    />
+    <div class="error" *ngIf="name.invalid && name.dirty">Name is invalid</div>
+  </div>
+  <input type="email" [(ngModel)]="userEmail" />
+  <input type="phones" [(ngModel)]="userPhone" />
+  <button (click)="addUser()">Add</button>
+</div>
+<div *ngFor="let user of userList">
+  <h3>{{ user.name }}</h3>
+  <div>{{ user.email }}</div>
+  <div>{{ user.phones.join(", ") }}</div>
+</div>

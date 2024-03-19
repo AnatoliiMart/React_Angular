@@ -1,8 +1,24 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Button, Form, Input } from 'antd'
+import { useDispatch, useSelector } from 'react-redux'
+import { login } from '../thunks/authThunk'
+import { useNavigate } from 'react-router-dom'
 const Login = () => {
+	const auth = useSelector((state) => state.auth)
+	const navigate = useNavigate()
+	const dispatch = useDispatch()
+	const emailField = useRef(null)
+	useEffect(() => {
+		emailField.current.focus()
+	}, [])
+	useEffect(() => {
+		if (auth.token) {
+			navigate('/')
+		}
+	}, [auth])
 	const onFinish = (values) => {
-		console.log('Success:', values)
+		dispatch(login(values))
+		navigate('/')
 	}
 	const onFinishFailed = (errorInfo) => {
 		console.log('Failed:', errorInfo)
@@ -11,6 +27,7 @@ const Login = () => {
 	return (
 		<div>
 			<h1>Login</h1>
+			{auth.error?.message}
 			<Form
 				name='basic'
 				labelCol={{
@@ -39,7 +56,7 @@ const Login = () => {
 						}
 					]}
 				>
-					<Input />
+					<Input ref={emailField} />
 				</Form.Item>
 
 				<Form.Item

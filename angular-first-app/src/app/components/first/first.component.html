@@ -1,0 +1,22 @@
+<h1 [hidden]="isActive">Hello, {{ user }}</h1>
+
+<input type="text" value="{{ user }}" />
+<input type="text" [value]="user" />
+<br />
+<input type="text" [(ngModel)]="user" />
+<hr />
+<input type="checkbox" [(ngModel)]="isActive" />
+<div *ngIf="fruits.length" [ngClass]="{ active: isActive }">
+  <p>Fruits: {{ fruits.length }}</p>
+  <ul>
+    @for(fruit of fruits; track $index){
+    <li>{{ $index }} - {{ fruit }}</li>
+    }
+  </ul>
+  <ol>
+    <li *ngFor="let fruit of fruits; let i = index">{{ i }} - {{ fruit }}</li>
+  </ol>
+</div>
+
+{{ count }}
+<button (click)="increment()">+++</button>

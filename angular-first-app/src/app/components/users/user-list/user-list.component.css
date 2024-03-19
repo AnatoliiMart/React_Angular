@@ -1,0 +1,6 @@
+input {
+  outline: none;
+}
+.ng-invalid {
+  border: 1px solid red;
+}
